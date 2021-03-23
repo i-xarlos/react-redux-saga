@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Hidden } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
@@ -35,15 +35,17 @@ export default function Table({ data, isLoading, onClick }) {
   };
 
   return (
-    <TableContainer>
-      <MTable className={classes.table} aria-label="simple table">
+    <TableContainer className={classes.table}>
+      <MTable aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell>Name</TableCell>
             <TableCell align="right">Phone</TableCell>
-            <TableCell align="right">Web</TableCell>
-            <TableCell align="right">Company</TableCell>
-            <TableCell align="right">Actions</TableCell>
+            <Hidden mdDown>
+              <TableCell align="right">Web</TableCell>
+              <TableCell align="right">Company</TableCell>
+              <TableCell align="right">Actions</TableCell>
+            </Hidden>
           </TableRow>
         </TableHead>
 
@@ -70,13 +72,16 @@ export default function Table({ data, isLoading, onClick }) {
                   {row.name}
                 </TableCell>
                 <TableCell align="right">{row.phone}</TableCell>
-                <TableCell align="right">{row.website}</TableCell>
-                <TableCell align="right">{row.company.name}</TableCell>
-                <TableCell align="right">
-                  <Button onClick={() => handleButton('delete', row.id)}>
-                    Delete
-                  </Button>
-                </TableCell>
+
+                <Hidden mdDown>
+                  <TableCell align="right">{row.website}</TableCell>
+                  <TableCell align="right">{row.company.name}</TableCell>
+                  <TableCell align="right">
+                    <Button onClick={() => handleButton('delete', row.id)}>
+                      Delete
+                    </Button>
+                  </TableCell>
+                </Hidden>
               </TableRow>
             )
           )}
