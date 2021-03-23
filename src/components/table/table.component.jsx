@@ -13,7 +13,7 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 650,
+    minWidth: 300,
     marginBottom: '2rem',
   },
   isLoading: {
