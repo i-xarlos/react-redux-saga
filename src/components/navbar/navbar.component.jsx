@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
@@ -6,7 +6,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import { useStyles } from './navbar.styles';
+import { useStyles, StyledMenu, StyledMenuItem } from './navbar.styles';
 import {
   Hidden,
   AppBar,
@@ -19,6 +19,8 @@ import {
 
 import Slide from '@material-ui/core/Slide';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger';
+import LeftMenu from '../menu/menu.component';
+import logo from './threader-logo.png';
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -33,11 +35,20 @@ function HideOnScroll(props) {
 
 export default function Navbar(props) {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [anchorLeftMenu, setAnchorLeftMenu] = useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+  const handleLeftMenu = (event) => {
+    setAnchorLeftMenu(event.currentTarget);
+  };
+
+  const handleCloseLeftMenu = () => {
+    setAnchorLeftMenu(null);
+  };
 
   const handleProfileMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
@@ -124,17 +135,22 @@ export default function Navbar(props) {
                 className={classes.menuButton}
                 color="inherit"
                 aria-label="open drawer"
+                onClick={handleLeftMenu}
               >
                 <MenuIcon />
               </IconButton>
             </Hidden>
-            {
-              //<GatsbyImage
-              //alt="Threader"
-              //image={logo.childImageSharp.gatsbyImageData}
-              ///>
-            }
 
+            <StyledMenu
+              id="customized-menu"
+              anchorEl={anchorLeftMenu}
+              keepMounted
+              open={Boolean(anchorLeftMenu)}
+              onClose={handleCloseLeftMenu}
+            >
+              <LeftMenu />
+            </StyledMenu>
+            <img src={logo} width="100" />
             <div className={classes.search}>
               <div className={classes.searchIcon}>
                 <SearchIcon />

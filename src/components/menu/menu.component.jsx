@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import {
   ListItemIcon,
   ListItem,
   ListItemText,
   Divider,
   List,
-} from '@material-ui/core'
+} from '@material-ui/core';
 //import { makeStyles } from '@material-ui/core/styles'
-import MailIcon from '@material-ui/icons/Mail'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
+import MailIcon from '@material-ui/icons/Mail';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
 
 //const useStyles = makeStyles(theme => ({
 //toolbar: theme.mixins.toolbar,
@@ -42,5 +42,5 @@ export default function Menu() {
         ))}
       </List>
     </>
-  )
+  );
 }
