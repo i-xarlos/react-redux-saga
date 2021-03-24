@@ -83,8 +83,8 @@ function* deleteUser(action) {
 
     yield put({
       type: type.DELETE_USER,
-      payload: action.payload,
-      //payload: deletedUser,
+      //payload: action.payload,
+      payload: deletedUser,
     });
   } catch (error) {
     yield put({
